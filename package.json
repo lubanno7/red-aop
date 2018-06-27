@@ -25,14 +25,13 @@
   "dependencies": {
     "events": "^3.0.0",
     "jquery": "^3.3.1",
-    "node": "^10.5.0"
-  },
-  "devDependencies": {
+    "node": "^10.5.0",
     "@types/events": "^1.2.0",
     "@types/jquery": "^3.3.4",
     "@types/node": "^10.3.4",
     "typescript": "^2.9.2"
   },
+  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/lubanno7/red-aop.git"
