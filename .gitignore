@@ -10,5 +10,5 @@
 .vscode/symbols.json
 
 # node_modules
-/build/
+/dist/
 /node_modules/
