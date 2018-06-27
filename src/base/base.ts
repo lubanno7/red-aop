@@ -137,7 +137,6 @@ export type EventFunction<T> = (sender: any, eventArgs: T) => void;
 /**
  * 名称:事件监听器
  * @description 前端事件机制实现
- * @author 胡燕龙(huyl)
  */
 export class EventHandler extends EventEmitter {
     /**

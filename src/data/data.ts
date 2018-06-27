@@ -274,7 +274,6 @@ export class DataTable extends BaseAddon implements IDataList {
 /**
  * 名称:数据集
  * @description 多个数据表的合集
- * @author huyl
  */
 @addon('DataSet', '数据集', '多个数据表的合集')
 export class DataSet extends BaseAddon {
@@ -456,7 +455,6 @@ export class DataView extends BaseAddon implements IDataList {
 
 /**
  * 数据服务接口
- * @author huyl
  * @description 用于访问服务端数据的服务接口
  */
 export class IDataService {

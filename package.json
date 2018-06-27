@@ -2,9 +2,23 @@
   "name": "red-aop",
   "version": "0.0.0",
   "description": "The JavaScript version of the AOP framework implements reflection, factory, agent, react compatible plug-ins and application abstraction.",
-  "main": "index.js",
+  "keywords": [
+    "aop",
+    "red aop",
+    "red-aop",
+    "factory",
+    "proxy",
+    "react",
+    "addon"
+  ],
+  "main": "./dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepare": "npm run rebuild",
+    "build": "tsc -p .",
+    "rebuild": "npm run build",
+    "test": "echo test",
+    "clean": "rd -rf dist",
+    "lint": "tslint --project tslint.json"
   },
   "author": "",
   "license": "MIT",
@@ -19,6 +33,14 @@
     "typescript": "^2.9.2"
   },
   "repository": {
+    "type": "git",
     "url": "https://github.com/lubanno7/red-aop.git"
+  },
+  "homepage": "https://github.com/lubanno7/red-aop/blob/master/README.md",
+  "bugs": {
+    "url": "https://github.com/lubanno7/red-aop/issues"
+  },
+  "engines": {
+    "node": ">=8.0.0"
   }
 }

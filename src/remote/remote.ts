@@ -82,7 +82,6 @@ export function remoteCall<T>(adapter: IRemoteClientAdapter, url: string, servic
 /**
  * 名称:远程服务系统
  * @description 定义远程服务系统的url,系统名称等
- * @author huyl
  */
 @addon('RemoteServiceSystem', '远程服务系统', '定义远程服务系统的url,系统名称等')
 export class RemoteSystem extends BaseAddon {
@@ -99,7 +98,6 @@ export class RemoteSystem extends BaseAddon {
 /**
  * 名称:远程服务信息
  * @description 用于描述每个远程服务的名称,代理类型等
- * @author huyl
  */
 @addon('RemoteSystem', '远程服务信息', '用于描述每个远程服务的名称,代理类型等')
 export class RemoteService extends BaseAddon {
