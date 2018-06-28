@@ -1,6 +1,6 @@
 {
   "name": "red-aop",
-  "version": "1.0.0",
+  "version": "1.0.1-1",
   "description": "The JavaScript version of the AOP framework implements reflection, factory, agent, react compatible plug-ins and application abstraction.",
   "keywords": [
     "aop",

@@ -1,3 +1,4 @@
+/// <reference path="../types/base.d.ts" />
 import { EventEmitter } from "events";
 
 /** 类型 */
