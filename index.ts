@@ -178,9 +178,12 @@ export {
 /**
  * 6、导出reactbase模块
  */
-import { BaseReactElementControl } from "./src/react/reactBase";
+import {
+    reactControl,
+    BaseReactElementControl
+} from "./src/react/reactBase";
 
-export { BaseReactElementControl }
+export { reactControl, BaseReactElementControl }
 
 /**
  * 7、导出security模块
