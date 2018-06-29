@@ -1,5 +1,4 @@
 import { BaseAddon, addon } from '../aop/aop';
-import { ReturnType } from '../remote/remote';
 
 /**
  * 数据状态
@@ -463,25 +462,25 @@ export class IDataService {
      * @param command 命令
      * @param params 查询参数
      */
-    query(command: string, params?: {}): ReturnType<any> { return undefined; }
+    query(command: string, params?: {}): Promise<any> { return undefined; }
     /**
      * 更新
      * @param command 命令
      * @param dataList 待更新数据
      * TODO: 暂时未实现 
      */
-    update?(command: string, dataList: DataEntity[]): ReturnType<any> { return undefined; }
+    update?(command: string, dataList: DataEntity[]): Promise<any> { return undefined; }
     /**
      * 插入
      * @param {string} command 命令ID
      * @param {Object[]} objects 插入对象集合
      * @returns {Promise<any>} 返回
      */
-    insert?(command: string, objects: Object[]): ReturnType<any>;
+    insert?(command: string, objects: Object[]): Promise<any>;
     /**
      * 获取数量
      * @param {string} command 命令ID
      * @param {{}} paramValues 参数
      */
-    count?(command: string, paramValues: {}): ReturnType<number>;
+    count?(command: string, paramValues: {}): Promise<number>;
 }

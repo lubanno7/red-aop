@@ -7,9 +7,6 @@ import { getCurrentPrincipal } from '../security/security';
  */
 export type RequestType = 'GET' | 'POST';
 
-/** 返回类型 */
-export type ReturnType<T> = T | Promise<T>;
-
 export interface IRemoteRequest {
     id?: string;
     serviceName?: string;
@@ -115,7 +112,6 @@ export class RemoteService extends BaseAddon {
 /**
  * 名称:请求对象
  * @description 用户客户端请求服务端的请求对象
- * @author 胡燕龙
  */
 export class RequestObject {
 
@@ -149,11 +145,12 @@ export enum ErrorStatus {
 
 /**
  * 创建错误
+ * @author huyl
  * @param status 状态码
  * @param msg 错误信息
  */
-export function createError(status: number, msg: string) {
+export function throwError(status: number, msg: string) {
     let error = new Error(msg);
     error.status = status;
-    return error;
+    throw error;
 }
