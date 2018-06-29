@@ -14,7 +14,8 @@ import {
     isBrowser,
     EventFunction,
     EventHandler,
-    syncLoadJson
+    syncLoadJson,
+    extend
 } from "./src/base/base";
 
 export {
@@ -30,7 +31,8 @@ export {
     isBrowser,
     EventFunction,
     EventHandler,
-    syncLoadJson
+    syncLoadJson,
+    extend
 }
 
 /**
@@ -205,3 +207,10 @@ export {
     getCurrentPrincipal,
     setCurrentPrincipal
 }
+
+/**
+ * 8、导出APP模块
+ */
+import { mainApplication, Application, IAppPathConfig } from "./src/app/app";
+
+export { mainApplication, Application, IAppPathConfig } 
