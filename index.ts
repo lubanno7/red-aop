@@ -160,6 +160,7 @@ import {
     jsonConvertDataTable,
     ObjectListTable,
     DataView,
+    DataEvent,
     IDataService
 } from "./src/data/data";
 
@@ -174,6 +175,7 @@ export {
     jsonConvertDataTable,
     ObjectListTable,
     DataView,
+    DataEvent,
     IDataService
 }
 
