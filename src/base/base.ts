@@ -76,10 +76,11 @@ if (!String.prototype.endsWith) {
 // 为string增加 compare方法,不区分大小写匹配
 if (!String.prototype.compare) {
     String.prototype.compare = function (str) {
-        if (!this || !str)
+        if (!this || !str) {
             return false;
-        //不区分大小写
-        if (this.toLocaleUpperCase() == str.toLocaleUpperCase()) {
+        }
+        // 不区分大小写
+        if (this.toLocaleUpperCase() === str.toLocaleUpperCase()) {
             return true; // 正确
         } else {
             return false; // 错误
@@ -115,8 +116,10 @@ export function loadStyle(url: string) {
  * @param urls css文件集url
  */
 export function loadStyles(urls: string[]) {
-    for (var i in urls) {
-        loadStyle(urls[i]);
+    for (let index = 0, len = urls.length;
+        index < len; index++) {
+        let url = urls[index];
+        loadStyle(url);
     }
 }
 
