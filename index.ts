@@ -33,7 +33,7 @@ export {
     EventHandler,
     syncLoadJson,
     extend
-}
+};
 
 /**
  * 2、导出reflect模块内容
@@ -64,7 +64,7 @@ export {
     assignType,
     buildTransparentProxyObject,
     createTransparentProxy
-}
+};
 
 /**
  * 3、导出aop模块
@@ -117,7 +117,7 @@ export {
     JsonFactory,
     AddonFactory,
     LazyFactory
-}
+};
 
 /**
  * 4、导出remote模块内容
@@ -144,7 +144,7 @@ export {
     RequestObject,
     ErrorStatus,
     throwError
-}
+};
 
 /**
  * 5、导出data模块
@@ -177,7 +177,7 @@ export {
     DataView,
     DataEvent,
     IDataService
-}
+};
 
 /**
  * 6、导出reactbase模块
@@ -187,7 +187,7 @@ import {
     BaseReactElementControl
 } from "./src/react/reactBase";
 
-export { reactControl, BaseReactElementControl }
+export { reactControl, BaseReactElementControl };
 
 /**
  * 7、导出security模块
@@ -208,11 +208,11 @@ export {
     Principal,
     getCurrentPrincipal,
     setCurrentPrincipal
-}
+};
 
 /**
  * 8、导出APP模块
  */
 import { mainApplication, Application, IAppPathConfig } from "./src/app/app";
 
-export { mainApplication, Application, IAppPathConfig } 
+export { mainApplication, Application, IAppPathConfig };
