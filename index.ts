@@ -15,7 +15,10 @@ import {
     EventFunction,
     EventHandler,
     syncLoadJson,
-    extend
+    extend,
+    loadLink,
+    loadStyle,
+    loadStyles
 } from "./src/base/base";
 
 export {
@@ -32,7 +35,10 @@ export {
     EventFunction,
     EventHandler,
     syncLoadJson,
-    extend
+    extend,
+    loadLink,
+    loadStyle,
+    loadStyles
 };
 
 /**

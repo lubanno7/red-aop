@@ -59,6 +59,67 @@ if (!String.prototype.format) {
     };
 }
 
+// 为string增加startWith方法
+if (!String.prototype.startsWith) {
+    String.prototype.startsWith = function (searchString, position) {
+        return this.substr(position || 0, searchString.length) === searchString;
+    };
+}
+
+// 为string增加endsWith方法
+if (!String.prototype.endsWith) {
+    String.prototype.endsWith = function (searchString, position) {
+        return this.substr(this.length - position || 0 - searchString.length, searchString.length) === searchString;
+    };
+}
+
+// 为string增加 compare方法,不区分大小写匹配
+if (!String.prototype.compare) {
+    String.prototype.compare = function (str) {
+        if (!this || !str)
+            return false;
+        //不区分大小写
+        if (this.toLocaleUpperCase() == str.toLocaleUpperCase()) {
+            return true; // 正确
+        } else {
+            return false; // 错误
+        }
+    };
+}
+
+/**
+ * 动态加载 link 标签
+ * @param url 待加载文件的url
+ * @param type 文件类型
+ * @param rel 
+ */
+export function loadLink(url: string, type: string, rel: string) {
+    var link = document.createElement("link");
+    link.type = type;
+    link.rel = rel;
+    link.href = url;
+    document.getElementsByTagName("head")[0].appendChild(link);
+}
+/**
+ * 动态加载 css 文件
+ * @param url 待加载css文件的url
+ * @param type 
+ * @param rel
+ */
+export function loadStyle(url: string) {
+    loadLink(url, "text/css", "stylesheet");
+}
+
+/**
+ * 动态加载 css 文件集
+ * @param urls css文件集url
+ */
+export function loadStyles(urls: string[]) {
+    for (var i in urls) {
+        loadStyle(urls[i]);
+    }
+}
+
 /** 合并JSON对象 */
 export function extend(des: any, src: any, override: boolean = true) {
     if (src instanceof Array) {
