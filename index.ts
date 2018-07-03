@@ -20,7 +20,9 @@ import {
     loadStyles,
     ErrorStatus,
     throwError,
-    syncLoadJson
+    syncLoadJson,
+    Error,
+    String
 } from "./src/base/base";
 
 export {
@@ -40,7 +42,9 @@ export {
     loadLink,
     loadStyle,
     loadStyles,
-    syncLoadJson
+    syncLoadJson,
+    Error,
+    String
 };
 
 /**

@@ -12,6 +12,34 @@ export interface IAnyType extends IType<any> {
 }
 
 /**
+ * 合并Error类型定义
+ */
+declare interface Error {
+    /**
+     * 错误状态吗
+     */
+    status?: number;
+}
+
+/**
+ * 合并String类型定义
+ */
+declare interface String {
+    /** 
+     * 格式化
+     * @description 根据{0-9}里面数字进行匹配
+     */
+    format(...args: any[]): string;
+    /**
+     * 区分大小写匹配
+     * @param str 匹配字符串
+     */
+    compare(str: string): boolean;
+}
+
+export { Error, String };
+
+/**
  * 新建Guid
  */
 export function newGuid(): string {
