@@ -42,6 +42,8 @@ export {
     loadLink,
     loadStyle,
     loadStyles,
+    ErrorStatus,
+    throwError,
     syncLoadJson,
     Error,
     String
