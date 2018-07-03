@@ -124,33 +124,3 @@ export class RequestObject {
 
     }
 }
-
-/** 错误码 */
-export enum ErrorStatus {
-    /** 文件不存在 */
-    ERROR_NOT_FOUND = 404,
-    /** 方法不存在 */
-    ERROR_FUNCTION_NOT_FOUND = 405,
-    /** 服务异常 */
-    ERROR_SERVICE = 500,
-    /** 服务不存在 */
-    ERROR_SERVICE_NOT_FOUND = 505,
-    /** 没有权限 */
-    ERROR_NOT_AUTHORITY = 900,
-    /** 用户没有登录 */
-    ERROR_USER_NOT_LOGIN = 901,
-    /** 用户已经登录 */
-    ERROR_USER_HAVE_LOGIN = 902
-}
-
-/**
- * 创建错误
- * @author huyl
- * @param status 状态码
- * @param msg 错误信息
- */
-export function throwError(status: number, msg: string) {
-    let error = new Error(msg);
-    error.status = status;
-    throw error;
-}

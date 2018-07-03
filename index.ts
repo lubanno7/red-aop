@@ -14,11 +14,13 @@ import {
     isBrowser,
     EventFunction,
     EventHandler,
-    syncLoadJson,
     extend,
     loadLink,
     loadStyle,
-    loadStyles
+    loadStyles,
+    ErrorStatus,
+    throwError,
+    syncLoadJson
 } from "./src/base/base";
 
 export {
@@ -34,11 +36,11 @@ export {
     isBrowser,
     EventFunction,
     EventHandler,
-    syncLoadJson,
     extend,
     loadLink,
     loadStyle,
-    loadStyles
+    loadStyles,
+    syncLoadJson
 };
 
 /**
@@ -135,9 +137,7 @@ import {
     remoteCall,
     RemoteSystem,
     RemoteService,
-    RequestObject,
-    ErrorStatus,
-    throwError
+    RequestObject
 } from "./src/remote/remote";
 
 export {
@@ -147,9 +147,7 @@ export {
     remoteCall,
     RemoteSystem,
     RemoteService,
-    RequestObject,
-    ErrorStatus,
-    throwError
+    RequestObject
 };
 
 /**
