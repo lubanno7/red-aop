@@ -1,5 +1,6 @@
 /// <reference path='base.d.ts' />
 import { EventEmitter } from "events";
+import { isError } from "util";
 
 /** 类型 */
 export interface IType<T> {
@@ -35,43 +36,6 @@ declare interface String {
      * @param str 匹配字符串
      */
     compare(str: string): boolean;
-}
-
-export { Error, String };
-
-/**
- * 新建Guid
- */
-export function newGuid(): string {
-    let guid = '{';
-    for (let i = 1; i <= 32; i++) {
-        let n = Math.floor(Math.random() * 16.0).toString(16);
-        guid += n;
-        if ((i === 8) || (i === 12) || (i === 16) || (i === 20)) { guid += '-'; }
-    }
-    return guid + '}';
-}
-
-/**
- * 获取当前日期字符串（精确到日）
- */
-export function getCurrentDateString(): string {
-    let today = new Date();
-    let timeString = today.getFullYear() + '/' + today.getMonth() + '/' + today.getDay();
-    return timeString;
-}
-
-/**
- * 获取当前时间字符串（精确到毫秒）
- */
-export function getCurrentTimeString(): string {
-    let today = new Date();
-    return `${today.getFullYear()}/${today.getMonth()}/${today.getDay()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}.${today.getMilliseconds()}`;
-}
-
-/** 判断数组 */
-export function isArray(arr: any) {
-    return Object.prototype.toString.call(arr) === '[object Array]';
 }
 
 /**
@@ -114,6 +78,43 @@ if (!String.prototype.compare) {
             return false; // 错误
         }
     };
+}
+
+export { Error, String };
+
+/**
+ * 新建Guid
+ */
+export function newGuid(): string {
+    let guid = '{';
+    for (let i = 1; i <= 32; i++) {
+        let n = Math.floor(Math.random() * 16.0).toString(16);
+        guid += n;
+        if ((i === 8) || (i === 12) || (i === 16) || (i === 20)) { guid += '-'; }
+    }
+    return guid + '}';
+}
+
+/**
+ * 获取当前日期字符串（精确到日）
+ */
+export function getCurrentDateString(): string {
+    let today = new Date();
+    let timeString = today.getFullYear() + '/' + today.getMonth() + '/' + today.getDay();
+    return timeString;
+}
+
+/**
+ * 获取当前时间字符串（精确到毫秒）
+ */
+export function getCurrentTimeString(): string {
+    let today = new Date();
+    return `${today.getFullYear()}/${today.getMonth()}/${today.getDay()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}.${today.getMilliseconds()}`;
+}
+
+/** 判断数组 */
+export function isArray(arr: any) {
+    return Object.prototype.toString.call(arr) === '[object Array]';
 }
 
 /**
@@ -175,7 +176,7 @@ export function extend(des: any, src: any, override: boolean = true) {
  */
 export function log(
     source: string,
-    message: Event | string,
+    message: string | Error | Event,
     messageType: 'error' | 'warning' | 'information' = 'information') {
 
     // 如果关闭了记录源则不记录
@@ -189,7 +190,8 @@ export function log(
     let date = new Date(Date.now());
     let dataString = `${date.toLocaleString()}`;
     let messageString = `[${dataString} (${source}) ${message}]`;
-    if (messageType === 'error') {
+
+    if (messageType === 'error' || isError(message)) {
         console.error(messageString);
     } else if (messageType === 'warning') {
         console.warn(messageString);
@@ -301,7 +303,6 @@ export enum ErrorStatus {
 
 /**
  * 创建错误
- * @author huyl
  * @param status 状态码
  * @param msg 错误信息
  */
