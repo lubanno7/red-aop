@@ -1,3 +1,4 @@
+/// <reference path='base.d.ts' />
 import { EventEmitter } from "events";
 
 /** 类型 */
@@ -46,30 +47,12 @@ export function isArray(arr: any) {
 }
 
 /**
- * 自定义String方法
- */
-export interface StringCustomConstructor extends String {
-    /** 
-     * 格式化
-     * @description 根据{0-9}里面数字进行匹配
-     */
-    format(...args: any[]): string;
-    /**
-     * 区分大小写匹配
-     * @param str 匹配字符串
-     */
-    compare(str: string): boolean;
-}
-
-declare const String: StringCustomConstructor;
-
-/**
  * 字符串格式化
  * @param str 字符串
  * @param args 参数
  */
-if (!String.format) {
-    String.format = function (...args: any[]) {
+if (!String.prototype.format) {
+    String.prototype.format = function (...args: any[]) {
         return this.replace(/\{([1-9]\d*|0)\}/g, function (_, i: number) {
             return args[i];
         });
@@ -77,22 +60,22 @@ if (!String.format) {
 }
 
 // 为string增加startWith方法
-if (!String.startsWith) {
-    String.startsWith = function (searchString, position) {
+if (!String.prototype.startsWith) {
+    String.prototype.startsWith = function (searchString, position) {
         return this.substr(position || 0, searchString.length) === searchString;
     };
 }
 
 // 为string增加endsWith方法
-if (!String.endsWith) {
-    String.endsWith = function (searchString, position) {
+if (!String.prototype.endsWith) {
+    String.prototype.endsWith = function (searchString, position) {
         return this.substr(this.length - position || 0 - searchString.length, searchString.length) === searchString;
     };
 }
 
 // 为string增加 compare方法,不区分大小写匹配
-if (!String.compare) {
-    String.compare = function (str: string) {
+if (!String.prototype.compare) {
+    String.prototype.compare = function (str: string) {
         if (!this || !str) {
             return false;
         }
@@ -287,30 +270,6 @@ export enum ErrorStatus {
     /** 用户已经登录 */
     ERROR_USER_HAVE_LOGIN = 902
 }
-
-/**
- * 错误自定义接口
- */
-export interface ErrorCustom extends Error {
-    /**
-     * 错误状态吗
-     */
-    status?: number;
-}
-
-/**
- * 错误自定构造接口
- */
-export interface ErrorCustomConstractor extends ErrorConstructor {
-    readonly prototype: ErrorCustom;
-    new(message?: string): ErrorCustom;
-    (message?: string): ErrorCustom;
-}
-
-/**
- * 错误常量，合并Error
- */
-declare const Error: ErrorCustomConstractor;
 
 /**
  * 创建错误
