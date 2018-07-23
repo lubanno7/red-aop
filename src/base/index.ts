@@ -283,7 +283,9 @@ export function syncLoadJson(url: string) {
     return jsonObject;
 }
 
-/** 错误码 */
+/** 
+ * 错误码
+ */
 export enum ErrorStatus {
     /** 文件不存在 */
     ERROR_NOT_FOUND = 404,
@@ -293,6 +295,8 @@ export enum ErrorStatus {
     ERROR_SERVICE = 500,
     /** 服务不存在 */
     ERROR_SERVICE_NOT_FOUND = 505,
+    /** 系统异常 */
+    ERROR_SYSTEM = 555,
     /** 没有权限 */
     ERROR_NOT_AUTHORITY = 900,
     /** 用户没有登录 */
@@ -302,12 +306,21 @@ export enum ErrorStatus {
 }
 
 /**
- * 创建错误
+ * 抛出错误
  * @param status 状态码
  * @param msg 错误信息
  */
 export function throwError(status: number, msg: string) {
+    throw newError(status, msg);
+}
+
+/**
+ * 创建错误
+ * @param status 状态码
+ * @param msg 错误信息
+ */
+export function newError(status: number, msg: string): Error {
     let error = new Error(msg);
     error.status = status;
-    throw error;
+    return error;
 }

@@ -22,7 +22,8 @@ import {
     throwError,
     syncLoadJson,
     Error,
-    String
+    String,
+    newError
 } from "./src/base";
 
 export {
@@ -46,7 +47,8 @@ export {
     throwError,
     syncLoadJson,
     Error,
-    String
+    String,
+    newError
 };
 
 /**
