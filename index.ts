@@ -208,7 +208,8 @@ import {
     ILoginService,
     Principal,
     getCurrentPrincipal,
-    setCurrentPrincipal
+    setCurrentPrincipal,
+    LoginType
 } from "./src/security";
 
 export {
@@ -217,7 +218,8 @@ export {
     ILoginService,
     Principal,
     getCurrentPrincipal,
-    setCurrentPrincipal
+    setCurrentPrincipal,
+    LoginType
 };
 
 /**
