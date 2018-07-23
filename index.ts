@@ -23,7 +23,7 @@ import {
     syncLoadJson,
     Error,
     String
-} from "./src/base/base";
+} from "./src/base";
 
 export {
     IType,
@@ -64,7 +64,7 @@ import {
     assignType,
     buildTransparentProxyObject,
     createTransparentProxy
-} from "./src/reflect/reflect";
+} from "./src/reflect";
 
 export {
     subTypeOf,
@@ -106,7 +106,7 @@ import {
     JsonFactory,
     AddonFactory,
     LazyFactory
-} from "./src/aop/aop";
+} from "./src/aop";
 
 export {
     getGlobalAddon,
@@ -144,7 +144,7 @@ import {
     RemoteSystem,
     RemoteService,
     RequestObject
-} from "./src/remote/remote";
+} from "./src/remote";
 
 export {
     RequestType,
@@ -172,7 +172,7 @@ import {
     DataView,
     DataEvent,
     IDataService
-} from "./src/data/data";
+} from "./src/data";
 
 export {
     DataState,
@@ -195,7 +195,7 @@ export {
 import {
     reactControl,
     BaseReactElementControl
-} from "./src/react/reactBase";
+} from "./src/reactBase";
 
 export { reactControl, BaseReactElementControl };
 
@@ -209,7 +209,7 @@ import {
     Principal,
     getCurrentPrincipal,
     setCurrentPrincipal
-} from "./src/security/security";
+} from "./src/security";
 
 export {
     UserIdentity,
@@ -223,6 +223,6 @@ export {
 /**
  * 8、导出APP模块
  */
-import { mainApplication, Application, IAppPathConfig } from "./src/app/app";
+import { mainApplication, Application, IAppPathConfig } from "./src/app";
 
 export { mainApplication, Application, IAppPathConfig };

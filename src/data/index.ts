@@ -1,4 +1,4 @@
-import { BaseAddon, addon } from '../aop/aop';
+import { BaseAddon, addon } from '../aop';
 
 /**
  * 数据状态

@@ -1,5 +1,5 @@
 /** 反射 */
-import { IAnyType, IType } from '../base/base';
+import { IAnyType, IType } from '../base';
 
 /** proto属性名称 */
 const protoPropName = '__proto__';

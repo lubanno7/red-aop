@@ -1,6 +1,6 @@
-import { addonSerialize, fetchAddonProtoType, BaseAddon, addon } from '../aop/aop';
-import { newGuid } from '../base/base';
-import { getCurrentPrincipal } from '../security/security';
+import { addonSerialize, fetchAddonProtoType, BaseAddon, addon } from '../aop';
+import { newGuid } from '../base';
+import { getCurrentPrincipal } from '../security';
 
 /**
  * 请求类型

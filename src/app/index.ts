@@ -1,4 +1,4 @@
-import { BaseAddon, addon } from '../aop/aop';
+import { BaseAddon, addon } from '../aop';
 
 export let mainApplication: Application;
 

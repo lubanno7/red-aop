@@ -1,4 +1,4 @@
-/// <reference path='base.d.ts' />
+/// <reference path='index.d.ts' />
 import { EventEmitter } from "events";
 import { isError } from "util";
 

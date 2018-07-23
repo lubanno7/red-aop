@@ -1,7 +1,6 @@
 /** 面向切面的编程 */
-import { getConstructorName, getFunctionName, getType, assignType, propertyCopy, buildTransparentProxyObject } from '../reflect/reflect';
-import { log, getGlobalValue, IAnyType, setGlobalValue, IType, newGuid, EventHandler, EventFunction } from '../base/base';
-import { syncLoadJson } from '../base/base';
+import { getConstructorName, getFunctionName, getType, assignType, propertyCopy, buildTransparentProxyObject } from '../reflect';
+import { log, getGlobalValue, IAnyType, setGlobalValue, IType, newGuid, EventHandler, EventFunction, syncLoadJson } from '../base';
 import { inherits } from 'util';
 
 // --------------以下是全局插件列表--------------

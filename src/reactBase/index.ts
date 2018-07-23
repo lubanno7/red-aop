@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SFC, ComponentClass } from 'react';
-import { addon, BaseAddon } from '../aop/aop';
+import { addon, BaseAddon } from '../aop';
 
 export type ReactElementType = string | SFC<BaseReactElementControl> | ComponentClass<BaseReactElementControl>;
 /**
