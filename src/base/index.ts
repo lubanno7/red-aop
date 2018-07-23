@@ -324,3 +324,129 @@ export function newError(status: number, msg: string): Error {
     error.status = status;
     return error;
 }
+
+/**
+ * 自适应
+ * @param win Window
+ * @param lib jQuery
+ */
+export function adaption(win: Window, lib: any) {
+    // 摘自淘宝移动端
+    let doc = win.document;
+    let docEl = doc.documentElement;
+    let metaEl = doc.querySelector('meta[name="viewport"]');
+    let flexibleEl = doc.querySelector('meta[name="flexible"]');
+    let dpr = 0;
+    let scale = 0;
+    let tid: NodeJS.Timer;
+    let flexible = lib.flexible || (lib.flexible = {});
+    let designPixel = 750;
+
+    if (metaEl) {
+        let match = metaEl.getAttribute('content').match(/initial\-scale=([\d\.]+)/);
+        if (match) {
+            scale = parseFloat(match[1]);
+            dpr = parseInt(`${1 / scale}`, null);
+        }
+    } else if (flexibleEl) {
+        let content = flexibleEl.getAttribute('content');
+        if (content) {
+            let initialDpr = content.match(/initial\-dpr=([\d\.]+)/);
+            let maximumDpr = content.match(/maximum\-dpr=([\d\.]+)/);
+            if (initialDpr) {
+                dpr = parseFloat(initialDpr[1]);
+                scale = parseFloat((1 / dpr).toFixed(2));
+            }
+            if (maximumDpr) {
+                dpr = parseFloat(maximumDpr[1]);
+                scale = parseFloat((1 / dpr).toFixed(2));
+            }
+        }
+    }
+    if (!dpr && !scale) {
+        // let isAndroid = win.navigator.appVersion.match(/android/gi);
+        let isIPhone = win.navigator.appVersion.match(/iphone/gi);
+        let devicePixelRatio = win.devicePixelRatio;
+        if (isIPhone) {
+            if (devicePixelRatio >= 3 && (!dpr || dpr >= 3)) {
+                dpr = 3;
+            } else if (devicePixelRatio >= 2 && (!dpr || dpr >= 2)) {
+                dpr = 2;
+            } else {
+                dpr = 1;
+            }
+        } else {
+            dpr = 1;
+        }
+        scale = 1 / dpr;
+    }
+    docEl.setAttribute('data-dpr', `${dpr}`);
+    if (!metaEl) {
+        metaEl = doc.createElement('meta');
+        metaEl.setAttribute('name', 'viewport');
+        metaEl.setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+        if (docEl.firstElementChild) {
+            docEl.firstElementChild.appendChild(metaEl);
+        } else {
+            let wrap = doc.createElement('div');
+            wrap.appendChild(metaEl);
+            doc.write(wrap.innerHTML);
+        }
+    }
+
+    function refreshRem() {
+        let width = docEl.getBoundingClientRect().width;
+        if (width / dpr > designPixel) {    // 如果分辨率不是1，那么获取的物理宽度应该乘以分辨率，才是最终可用的width
+            width = width * dpr;
+        }
+        let rem = width / (designPixel / 100); // 计算最终还原到设计图上的比例，从而设置到文档上
+        docEl.style.fontSize = rem + 'px';
+        flexible.rem = win["rem"] = rem;
+    }
+
+    win.addEventListener(
+        'resize',
+        function () {
+            clearTimeout(tid);
+            tid = setTimeout(refreshRem, 300);
+        },
+        false);
+    win.addEventListener(
+        'pageshow',
+        function (e) {
+            if (e.persisted) {
+                clearTimeout(tid);
+                tid = setTimeout(refreshRem, 300);
+            }
+        },
+        false);
+
+    if (doc.readyState === 'complete') {
+        doc.body.style.fontSize = 16 * dpr + 'px';
+    } else {
+        doc.addEventListener(
+            'DOMContentLoaded',
+            function (e) {
+                doc.body.style.fontSize = 16 * dpr + 'px';
+            },
+            false);
+    }
+    refreshRem();
+
+    flexible.dpr = win["dpr"] = dpr;
+    flexible.refreshRem = refreshRem;
+    flexible.rem2px = function (d: string) {
+        let val: any = parseFloat(d) * this.rem;
+        if (typeof d === 'string' && d.match(/rem$/)) {
+            val += 'px';
+        }
+        return val;
+    };
+    flexible.px2rem = function (d: string) {
+        let val: any = parseFloat(d) / this.rem;
+        if (typeof d === 'string' && d.match(/px$/)) {
+            val += 'rem';
+        }
+        return val;
+    };
+}

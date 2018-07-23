@@ -23,7 +23,8 @@ import {
     syncLoadJson,
     Error,
     String,
-    newError
+    newError,
+    adaption
 } from "./src/base";
 
 export {
@@ -48,7 +49,8 @@ export {
     syncLoadJson,
     Error,
     String,
-    newError
+    newError,
+    adaption
 };
 
 /**
