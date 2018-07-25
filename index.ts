@@ -197,11 +197,20 @@ export {
  * 6、导出reactbase模块
  */
 import {
+    setGlobalStateStore,
+    getGlobalStateStore,
+    getAllGlobalStateStore,
     reactControl,
     BaseReactElementControl
 } from "./src/reactBase";
 
-export { reactControl, BaseReactElementControl };
+export {
+    setGlobalStateStore,
+    getGlobalStateStore,
+    getAllGlobalStateStore,
+    reactControl,
+    BaseReactElementControl
+};
 
 /**
  * 7、导出security模块

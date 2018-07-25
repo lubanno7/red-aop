@@ -1,15 +1,54 @@
 import * as React from 'react';
 import { SFC, ComponentClass } from 'react';
 import { addon, BaseAddon } from '../aop';
+import { connect } from "react-redux";
+import { getGlobalValue, setGlobalValue } from '../base';
 
-export type ReactElementType = string | SFC<BaseReactElementControl> | ComponentClass<BaseReactElementControl>;
+export type ReactElementType = SFC<BaseReactElementControl> | ComponentClass<BaseReactElementControl>;
+
+const globalStateStoreName = "__global_StateStore__";
+
+/**
+ * 设置全局State
+ * @param name 名称
+ * @param state 待设置state
+ */
+export function setGlobalStateStore(name: string, state: any) {
+    let globalStateStore = getGlobalValue(globalStateStoreName);
+    if (!globalStateStore) {
+        globalStateStore = {};
+    }
+    globalStateStore[name] = state;
+    setGlobalValue(globalStateStoreName, globalStateStore);
+}
+
+/**
+ * 获取state
+ * @param name 带获取state名称
+ */
+export function getGlobalStateStore<T>(name: string): T {
+    let globalStateStore = getGlobalValue(globalStateStoreName);
+    if (!globalStateStore) return undefined;
+    return globalStateStore[name] as T;
+}
+
+/**
+ * 获取全局State
+ */
+export function getAllGlobalStateStore<T>() {
+    let globalStateStore = getGlobalValue(globalStateStoreName);
+    return globalStateStore as T;
+}
+
 /**
  * React元素控制器
  * @param element 元素函数/类
+ * @param mapStateToProps 映射的状态属性
+ * @param mapDispatchToProps 映射的行为属性
  */
-export function reactControl(element: ReactElementType) {
+export function reactControl(element: ReactElementType, mapStateToProps?: any, mapDispatchToProps?: any) {
     return function (target: any) {
-        target.prototype.$reactElement = element;
+        target.prototype.$reactElement = connect(mapStateToProps, mapDispatchToProps)(element);
     };
 }
 
