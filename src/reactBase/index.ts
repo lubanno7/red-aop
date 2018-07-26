@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SFC, ComponentClass } from 'react';
 import { addon, BaseAddon } from '../aop';
 import { connect } from "react-redux";
-import { getGlobalValue, setGlobalValue } from '../base';
+import { getGlobalValue, setGlobalValue, log } from '../base';
 
 export type ReactElementType = SFC<BaseReactElementControl> | ComponentClass<BaseReactElementControl>;
 
@@ -52,6 +52,24 @@ export function reactControl(element: ReactElementType, mapStateToProps?: any, m
     };
 }
 
+/**
+ * 全局Reducer装饰器
+ * @param key 待设置key
+ * @param reducer 待设置的reducer
+ * @description key 属性对应需要映射的状态的key
+ * @example const mapStateToProps = (state:any)=> ({key:state[key]})
+ */
+export function rootReducer(key: string, reducer: any) {
+    return function (_: any) {
+        // 添加reducer到全局
+        log('redux', `Reducer注册成功: ${key}`);
+        setGlobalStateStore(key, reducer);
+    };
+}
+
+/**
+ * 元素控制器基类
+ */
 @addon('BaseReactElementControl', '元素控制器基类', '所有React元素控制器的基类')
 export class BaseReactElementControl extends BaseAddon {
     /**

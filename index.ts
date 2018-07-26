@@ -201,6 +201,7 @@ import {
     getGlobalStateStore,
     getAllGlobalStateStore,
     reactControl,
+    rootReducer,
     BaseReactElementControl
 } from "./src/reactBase";
 
@@ -209,6 +210,7 @@ export {
     getGlobalStateStore,
     getAllGlobalStateStore,
     reactControl,
+    rootReducer,
     BaseReactElementControl
 };
 
